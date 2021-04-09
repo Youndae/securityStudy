@@ -1,5 +1,6 @@
 package com.exam.security.securityConfig;
 
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -11,7 +12,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Slf4j
+@Log4j
 public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler {
 
 

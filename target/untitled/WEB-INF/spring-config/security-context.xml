@@ -7,6 +7,8 @@
 
     <bean id="customAccessDenied" class="com.exam.security.securityConfig.CustomAccessDeniedHandler"></bean>
     <bean id="customLoginSuccess" class="com.exam.security.securityConfig.CustomLoginSuccessHandler"></bean>
+    <!--<bean id="customPasswordEncoder" class="com.exam.security.securityConfig.CustomNoOpPasswordEncoder"></bean>-->
+    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
 
     <security:http>
         <security:intercept-url pattern="/sample/all" access="permitAll" />
@@ -25,15 +27,21 @@
         <security:access-denied-handler ref="customAccessDenied"/>
     </security:http>
 
+
     <security:authentication-manager>
         <security:authentication-provider>
-            <security:user-service>
+            <security:jdbc-user-service data-source-ref="dataSource"/>
+            <!--<security:user-service>
                 <security:user name="member" password="{noop}member" authorities="ROLE_MEMBER"/>
-                <!--여기서 name이 id가 되고 password설정을 해주고 authorities로 권한을 부여한다.-->
+                &lt;!&ndash;여기서 name이 id가 되고 password설정을 해주고 authorities로 권한을 부여한다.&ndash;&gt;
                 <security:user name="admin" password="{noop}admin" authorities="ROLE_MEMBER, ROLE_ADMIN"/>
-            </security:user-service>
+            </security:user-service>-->
+            <!--<security:password-encoder ref="customPasswordEncoder"/>-->
+            <security:password-encoder ref="bcryptPasswordEncoder"/>
         </security:authentication-provider>
     </security:authentication-manager>
+
+
 
 </beans>
 
