@@ -13,9 +13,14 @@
         <collection property="authList" resultMap="authMap"></collection>
     </resultMap>
 
+    <resultMap id="authMap" type="com.exam.security.domain.AuthVO">
+        <result property="userid" column="userid"/>
+        <result property="auth" column="auth"/>
+    </resultMap>
+
     <select id="read" resultMap="memberMap">
         SELECT mem.userid, userpw, username, enabled, regdate, updatedate, auth
-        FROM tbl_member me LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid
+        FROM tbl_member mem LEFT OUTER JOIN tbl_member_auth auth on mem.userid = auth.userid
         WHERE mem.userid = #{userid}
     </select>
 

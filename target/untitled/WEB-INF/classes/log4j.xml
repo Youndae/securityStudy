@@ -42,7 +42,7 @@
     </logger>
 
     <logger name="jdbc.audit">
-        <level value="OFF"/>
+        <level value="WARN"/>
     </logger>
 
     <logger name="jdbc.resulttest">
