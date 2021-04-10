@@ -31,6 +31,7 @@ public class MemberTests {
     public void testInsertMember(){
         String sql = "insert into tbl_member(userid, userpw, username) values (?, ?, ?)";
 
+
         for(int i = 0; i < 100; i++){
 
             Connection con = null;
@@ -79,6 +80,8 @@ public class MemberTests {
     public void testInsertAuth(){
 
         String sql = "insert into tbl_member_auth (userid, auth) values (?, ?)";
+
+
 
         for(int i = 0; i < 100; i++){
 

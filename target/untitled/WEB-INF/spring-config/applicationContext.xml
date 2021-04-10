@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:beans="http://www.springframework.org/schema/beans"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jdbc="http://www.springframework.org/schema/jdbc"
@@ -20,6 +21,20 @@
           p:driverClassName="${jdbc.mysql.driverClassName}"
           p:url="${jdbc.mysql.url}" p:username="${jdbc.mysql.username}"
           p:password="${jdbc.mysql.password}"/>
+
+
+    <!-- SessionFactory -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations" value="classpath:mapper/*Mapper.xml"/>
+        <property name="typeAliasesPackage" value="com.exam.security"/>
+        <property name="transactionFactory">
+            <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory"/>
+        </property>
+
+    </bean>
+
+    <mybatis-spring:scan base-package="com.exam.security"/>
     
 
 
